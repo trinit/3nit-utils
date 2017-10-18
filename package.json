@@ -1,14 +1,23 @@
 {
   "name": "3nit-utils",
-  "version": "0.2.0",
+  "version": "0.2.5",
   "description": "NodeJS & React utils for 3nit projects",
-  "main": "index.js",
+  "main": "./lib/index.js",
   "repository": "https://github.com/trinit/3nit-utils.git",
   "author": "Jonas Windey <jonas.windey@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
     "toys": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-es2015-parameters": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0"
+  },
+  "scripts": {
+    "build": "babel src --out-dir lib",
+    "prepublishOnly": "npm run build"
   }
 }
