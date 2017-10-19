@@ -1,7 +1,7 @@
 import Toys from 'toys'
-const ping = () => 'pong'
-
 const wrap = Toys.handler
+
+const ping = () => `pong`
 
 const GET = (path, handler) => ({method: 'GET', path, handler: wrap(handler)})
 const PUT = (path, handler) => ({method: 'PUT', path, handler: wrap(handler)})

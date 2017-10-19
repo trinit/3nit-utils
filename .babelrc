@@ -4,7 +4,7 @@
       "targets": {
         "node": "current"
       },
-      "debug": true
+      "debug": false
     }]
   ],
   "plugins": [
