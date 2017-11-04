@@ -8,9 +8,11 @@ const key = {
 }
 
 const models = []
+let instance
 
 const init = async (mongoose, uri, schemas) =>
   new Promise(async (resolve, reject) => {
+    instance = mongoose
     mongoose.Promise = global.Promise
     debug('db')('Connecting to db')
     mongoose.connect(uri, {useMongoClient: true})
@@ -26,4 +28,4 @@ const init = async (mongoose, uri, schemas) =>
     })
   })
 
-export default {init, key, models}
+export default {init, key, models, instance}
