@@ -18,10 +18,9 @@ const key = {
 };
 
 const models = [];
-let instance;
+const instance = [];
 
 const init = async (mongoose, uri, schemas) => new Promise(async (resolve, reject) => {
-  instance = mongoose;
   mongoose.Promise = global.Promise;
   (0, _debug2.default)('db')('Connecting to db');
   mongoose.connect(uri, { useMongoClient: true });
@@ -29,6 +28,7 @@ const init = async (mongoose, uri, schemas) => new Promise(async (resolve, rejec
   db.on('error', () => (0, _debug2.default)('db')('⚠️ Error connecting to database'));
   db.once('open', () => {
     (0, _debug2.default)('db')('⚡️ Connected to database');
+    instance.push(mongoose);
     schemas.forEach((_ref) => {
       let name = _ref.name,
           path = _ref.path,
@@ -41,4 +41,6 @@ const init = async (mongoose, uri, schemas) => new Promise(async (resolve, rejec
   });
 });
 
-exports.default = { init, key, models, instance };
+const mongoose = () => instance[0];
+
+exports.default = { init, key, models, mongoose };
