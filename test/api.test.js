@@ -29,6 +29,28 @@ describe('api', () => {
   })
 
   test('base', () => {
-    expect(api.base().toEqual({}))
+    const path = 'test'
+    const Model = {}
+    const result = JSON.stringify(api.base({path, Model}))
+    expect(result).toEqual(JSON.stringify([
+      {
+        ...api.GET(`/api/${path}`, () => {})
+      },
+      {
+        ...api.GET(`/api/${path}/code/{code}`, () => {})
+      },
+      {
+        ...api.GET(`/api/${path}/path`, () => {})
+      },
+      {
+        ...api.GET(`/api/${path}/{id}`, () => {})
+      },
+      {
+        ...api.POST(`/api/${path}`, () => {})
+      },
+      {
+        ...api.PUT(`/api/${path}/{id}`, () => {})
+      }
+    ]))
   })
 })

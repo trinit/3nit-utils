@@ -18,7 +18,10 @@
   },
   "scripts": {
     "build": "babel src --out-dir .",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "debug": "^3.1.0",
