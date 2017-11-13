@@ -7,22 +7,26 @@ const defaultHandlerWrapper = app => {
 }
 
 const init = async ({server = new hapi.Server(), port, app, routes}) =>
-  app.prepare().then(() => {
-    server.connection({ port })
-    server.register([]).then(() => {
-      routes.forEach(route => server.route(route))
+  new Promise(async (resolve, reject) => {
+    app.prepare().then(() => {
+      server.connection({ port })
+      server.register([]).then(() => {
+        routes.forEach(route => server.route(route))
 
-      server.route({
-        method: 'GET',
-        path: '/{p*}',
-        handler: defaultHandlerWrapper(app)
-      })
+        server.route({
+          method: 'GET',
+          path: '/{p*}',
+          handler: defaultHandlerWrapper(app)
+        })
 
-      server.start().catch(error => {
-        debug('dev')('Error starting server')
-        debug('dev')(error)
-      }).then(() => {
-        debug('dev')('> Ready on http://localhost:' + port)
+        server.start().catch(error => {
+          debug('dev')('Error starting server')
+          debug('dev')(error)
+        }).then(() => {
+          debug('dev')('> Ready on http://localhost:' + port)
+        })
+
+        resolve()
       })
     })
   })
