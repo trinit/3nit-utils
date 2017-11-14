@@ -23,10 +23,9 @@ const init = async ({server = new hapi.Server(), port, app, routes}) =>
           debug('dev')('Error starting server')
           debug('dev')(error)
         }).then(() => {
-          debug('dev')('> Ready on http://localhost:' + port)
+          debug('dev')('> Ready on http://l:' + port)
+          resolve('> Ready on http://l:' + port)
         })
-
-        resolve()
       })
     })
   })

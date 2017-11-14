@@ -1,28 +1,17 @@
-/* global describe, test, expect, beforeAll */
+/* global describe, test, expect */
 
-import hapi from 'hapi'
-// import data from '../src/data'
-import debug from 'debug'
+import superagent from 'superagent'
+import mock from './config/mock'
 
-beforeAll(async (done) => {
-  const port = 4000
-  const server = new hapi.Server()
-  server.connection({ port })
-  server.register([]).then(() => {
-    // routes.forEach(route => server.route(route))
-
-    server.start().catch(error => {
-      debug('dev')('Error starting server')
-      debug('dev')(error)
-    }).then(() => {
-      debug('dev')('> Ready on http://localhost:' + port)
-      done()
-    })
-  })
-})
+import data from '../src/data'
+require('superagent-mock')(superagent, mock)
 
 describe('api', () => {
-  test('find', () => {
-    expect(0).toEqual(0)
+  test('find', async () => {
+    expect(await data.find('test')).toEqual({items: []})
+  })
+
+  test('get/id', async () => {
+    expect(await data.find('test/id')).toEqual({})
   })
 })

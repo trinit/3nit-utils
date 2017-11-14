@@ -5348,6 +5348,10 @@ subtext@^5.0.0:
     pez "2.x.x"
     wreck "12.x.x"
 
+superagent-mock@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/superagent-mock/-/superagent-mock-3.6.0.tgz#8562b05fc9509fe24dd925b1c444c001ce874e7c"
+
 superagent@^3.8.0:
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/superagent/-/superagent-3.8.0.tgz#87e3ed536c8860c08c7c7d1225da9a80cab064c6"

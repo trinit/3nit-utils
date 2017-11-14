@@ -4,7 +4,7 @@ import debug from 'debug'
 const isServer = typeof window === 'undefined'
 
 const API = process.env.NODE_ENV === 'development' ? 'http://l:4000/api'
-  : isServer ? `http://localhost:${process.env.PORT}/api` : '/api'
+  : isServer ? `http://l:${process.env.PORT}/api` : '/api'
 
 const find = async (model) => {
   const res = await superagent.get(`${API}/${model}`)
