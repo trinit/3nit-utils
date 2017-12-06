@@ -1,5 +1,6 @@
 import debug from 'debug'
 import hapi from 'hapi'
+import Inert from 'inert'
 
 const defaultHandlerWrapper = app => {
   const handler = app.getRequestHandler()
@@ -10,7 +11,7 @@ const init = async ({server = new hapi.Server(), port, app, routes}) =>
   new Promise(async (resolve, reject) => {
     app.prepare().then(() => {
       server.connection({ port })
-      server.register([]).then(() => {
+      server.register([Inert]).then(() => {
         routes.forEach(route => server.route(route))
 
         server.route({
