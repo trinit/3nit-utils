@@ -6,6 +6,7 @@ const ping = () => `pong`
 const GET = (path, handler) => ({method: 'GET', path, handler: wrap(handler)})
 const PUT = (path, handler) => ({method: 'PUT', path, handler: wrap(handler)})
 const POST = (path, handler) => ({method: 'POST', path, handler: wrap(handler)})
+const DELETE = (path, handler) => ({method: 'DELETE', path, handler: wrap(handler)})
 
 const base = ({path, Model}) => [
   {
@@ -32,6 +33,10 @@ const base = ({path, Model}) => [
     })
   },
   {
+    ...DELETE(`/api/${path}/{id}`, async (req, reply) =>
+      reply(await Model.remove({_id: req.params.id})))
+  },
+  {
     ...PUT(`/api/${path}/{id}`, async (req, reply) => {
       await Object.assign(
         await Model.findOne({_id: req.params.id}), req.payload
@@ -41,4 +46,4 @@ const base = ({path, Model}) => [
   }
 ]
 
-export default {ping, base, GET, PUT, POST}
+export default {ping, base, GET, PUT, POST, DELETE}
