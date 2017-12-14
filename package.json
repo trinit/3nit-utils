@@ -1,6 +1,6 @@
 {
   "name": "3nit-utils",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "NodeJS & React utils for 3nit projects",
   "main": "./index.js",
   "repository": "https://github.com/trinit/3nit-utils.git",
