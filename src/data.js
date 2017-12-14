@@ -44,9 +44,14 @@ const post = async (path, data) => {
   return res.body
 }
 
+const remove = async (model, id) => {
+  await superagent.del(`${API}/${model}/${id}`)
+  return 'removed'
+}
+
 const custom = async path => {
   const res = await superagent.get(`${API}/${path}`)
   return res.body
 }
 
-export default {find, get, getByCode, getByPath, create, update, post, custom}
+export default {find, get, getByCode, getByPath, create, update, post, remove, custom}
