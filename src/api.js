@@ -11,7 +11,7 @@ const DELETE = (path, handler) => ({method: 'DELETE', path, handler: wrap(handle
 const base = ({path, Model}) => [
   {
     ...GET(`/api/${path}`, async (req, reply) =>
-      reply(await Model.find().sort('sequence -date -delivery').populate('user').batchSize(10000)))
+      reply(await Model.find().sort('sequence -date -created -delivery').populate('user').batchSize(10000)))
   },
   {
     ...GET(`/api/${path}/code/{code}`, async (req, reply) =>
