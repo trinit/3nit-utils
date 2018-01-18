@@ -1,4 +1,4 @@
-import db from '3nit-utils/db'
+/* import db from '3nit-utils/db'
 import nodemailer from 'nodemailer'
 import debug from 'debug'
 
@@ -18,11 +18,12 @@ const options = {
 
 const DEBUG = process.env.SMTP_DEBUG
 
-const transporter = nodemailer.createTransport(options)
+const transporter = nodemailer.createTransport(options) */
 
 const send = ({mail, to, link}) =>
   new Promise(async (resolve, reject) => {
-    try {
+    resolve('to do')
+    /* try {
       if (DEBUG) {
         debug('dev')('Send e-mail')
         debug('dev')(options)
@@ -50,7 +51,7 @@ const send = ({mail, to, link}) =>
     } catch (e) {
       console.error(e)
       reject(e)
-    }
+    } */
   })
 
 export default {send}
