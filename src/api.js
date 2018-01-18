@@ -22,6 +22,10 @@ const base = ({path, Model}) => [
       reply(await Model.findOne({path: req.query.value})))
   },
   {
+    ...GET(`/api/${path}/key`, async (req, reply) =>
+      reply(await Model.findOne({key: req.query.key})))
+  },
+  {
     ...GET(`/api/${path}/{id}`, async (req, reply) =>
       reply(await Model.findOne({_id: req.params.id})))
   },

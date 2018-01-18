@@ -26,6 +26,11 @@ const getByPath = async (model, path = '/') => {
   return res.body
 }
 
+const getByKey = async (model, key) => {
+  const res = await superagent.get(`${API}/${model}/key?key=${encodeURIComponent(key)}`)
+  return res.body
+}
+
 const create = async (model, data) => {
   const res = await superagent.post(`${API}/${model}`, data)
   return res.body
@@ -54,4 +59,4 @@ const custom = async path => {
   return res.body
 }
 
-export default {find, get, getByCode, getByPath, create, update, post, remove, custom}
+export default {find, get, getByCode, getByPath, getByKey, create, update, post, remove, custom}
