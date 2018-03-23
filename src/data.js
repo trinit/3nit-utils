@@ -4,7 +4,7 @@ import debug from 'debug'
 const isServer = typeof window === 'undefined'
 
 const API = process.env.NODE_ENV === 'development'
-  ? process.env.API_ENDPOINT ? process.env_API_ENDPOINT : 'http://l:4000/api'
+  ? process.env.API_ENDPOINT ? process.env.API_ENDPOINT : 'http://l:4000/api'
   : isServer ? `http://localhost:${process.env.PORT}/api` : '/api'
 
 const find = async (model) => {
