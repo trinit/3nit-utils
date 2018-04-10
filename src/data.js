@@ -1,5 +1,6 @@
 /* global localStorage */
 import superagent from 'superagent'
+import superagentQueue from 'superagent-d2l-queue'
 import debug from 'debug'
 
 const isServer = typeof window === 'undefined'
@@ -11,6 +12,7 @@ const API = process.env.NODE_ENV === 'development'
 const find = async (model, token = localStorage.getItem('jwt')) => {
   const res = await superagent
     .get(`${API}/${model}`)
+    .use(superagentQueue({queue: []}))
     .set('Authorization', `${token}`)
   return res.body
 }
@@ -18,6 +20,7 @@ const find = async (model, token = localStorage.getItem('jwt')) => {
 const get = async (model, id, token = localStorage.getItem('jwt')) => {
   const res = await superagent
     .get(`${API}/${model}/${id}`)
+    .use(superagentQueue({queue: []}))
     .set('Authorization', `${token}`)
   return res.body
 }
@@ -25,6 +28,7 @@ const get = async (model, id, token = localStorage.getItem('jwt')) => {
 const getByCode = async (model, code, token = localStorage.getItem('jwt')) => {
   const res = await superagent
     .get(`${API}/${model}/code/${code}`)
+    .use(superagentQueue({queue: []}))
     .set('Authorization', `${token}`)
   return res.body
 }
@@ -32,6 +36,7 @@ const getByCode = async (model, code, token = localStorage.getItem('jwt')) => {
 const getByPath = async (model, path = '/', token = localStorage.getItem('jwt')) => {
   const res = await superagent
     .get(`${API}/${model}/path?value=${encodeURIComponent(path)}`)
+    .use(superagentQueue({queue: []}))
     .set('Authorization', `${token}`)
   return res.body
 }
@@ -39,6 +44,7 @@ const getByPath = async (model, path = '/', token = localStorage.getItem('jwt'))
 const getByKey = async (model, key, token = localStorage.getItem('jwt')) => {
   const res = await superagent
     .get(`${API}/${model}/key?key=${encodeURIComponent(key)}`)
+    .use(superagentQueue({queue: []}))
     .set('Authorization', `${token}`)
   return res.body
 }
@@ -77,6 +83,7 @@ const remove = async (model, id, token = localStorage.getItem('jwt')) => {
 const custom = async (path, token = localStorage.getItem('jwt')) => {
   const res = await superagent
     .get(`${API}/${path}`)
+    .use(superagentQueue({queue: []}))
     .set('Authorization', `${token}`)
   return res.body
 }

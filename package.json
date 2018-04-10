@@ -33,6 +33,7 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "superagent": "^3.8.0",
+    "superagent-d2l-queue": "^3.0.5",
     "toys": "^1.0.0"
   },
   "jest": {
