@@ -1,5 +1,6 @@
 import superagent from 'superagent'
 import superagentQueue from 'superagent-d2l-queue'
+import {stringify} from 'qs'
 import debug from 'debug'
 
 const isServer = typeof window === 'undefined'
@@ -11,9 +12,10 @@ const API = process.env.NODE_ENV === 'development'
   ? process.env.API_ENDPOINT ? process.env.API_ENDPOINT : 'http://l:4000/api'
   : isServer ? `http://localhost:${process.env.PORT}/api` : '/api'
 
-const find = async (model) => {
+const find = async (model, filters) => {
+  const query = filters ? '/find/' + stringify(filters) : ''
   const res = await superagent
-    .get(`${API}/${model}`)
+    .get(`${API}/${model}${query}`)
     .use(superagentQueue({queue: []}))
     .set('Authorization', `${token}`)
   return res.body

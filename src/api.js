@@ -1,3 +1,5 @@
+import queryhelper from './queryhelper'
+
 const ping = () => `pong`
 
 const GET = (path, handler, auth) => ({method: 'GET', path, handler, config: {auth: auth}})
@@ -10,6 +12,9 @@ const base = ({path, Model}) => [
     ...GET(`/api/${path}`, async (req, reply) =>
       Model.find().sort('sequence -date -created -delivery').populate('user').batchSize(10000))
   },
+  {...GET(`/api/${path}/find/{filters}`, async ({params: {filters}}) => {
+    try { return await queryhelper.find({Model, filters}) } catch (e) { return e }
+  })},
   {
     ...GET(`/api/${path}/code/{code}`, async (req, reply) =>
       Model.findOne({code: req.params.code}))
