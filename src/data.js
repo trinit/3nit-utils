@@ -84,9 +84,10 @@ const remove = async (model, id) => {
   return 'removed'
 }
 
-const custom = async (path) => {
+const custom = async (path, filters) => {
+  const query = filters ? '/' + stringify(filters) : ''
   const res = await superagent
-    .get(`${API}/${path}`)
+    .get(`${API}/${path}${query}`)
     .use(superagentQueue({queue: []}))
     .set('Authorization', `${token}`)
   return res.body
