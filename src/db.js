@@ -14,7 +14,7 @@ const init = async (mongoose, uri, schemas) =>
   new Promise(async (resolve, reject) => {
     mongoose.Promise = global.Promise
     debug('db')('Connecting to db')
-    mongoose.connect(uri, {useMongoClient: true})
+    mongoose.connect(uri, {useNewUrlParser: true})
     const db = mongoose.connection
     db.on('error', () => debug('db')('⚠️ Error connecting to database'))
     db.once('open', () => {
