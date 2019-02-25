@@ -84,13 +84,6 @@ const remove = async (model, id) => {
   return 'removed'
 }
 
-const del = async (path) => {
-  await superagent
-    .del(`${API}/${path}`)
-    .set('Authorization', `${token}`)
-  return 'removed'
-}
-
 const custom = async (path, filters) => {
   const query = filters ? '/' + stringify(filters) : ''
   const res = await superagent
@@ -100,4 +93,4 @@ const custom = async (path, filters) => {
   return res.body
 }
 
-export default {setToken, find, get, getByCode, getByPath, getByKey, create, update, post, remove, custom, del}
+export default {setToken, find, get, getByCode, getByPath, getByKey, create, update, post, remove, custom}

@@ -2,10 +2,10 @@ import queryhelper from './queryhelper'
 
 const ping = () => `pong`
 
-const GET = (path, handler, auth, tags = ['api'], validate = {}) => ({method: 'GET', path, handler, options: {auth, tags, validate}})
-const PUT = (path, handler, auth, tags = ['api'], validate = {}) => ({method: 'PUT', path, handler, options: {auth, tags, validate}})
-const POST = (path, handler, auth, tags = ['api'], validate = {}) => ({method: 'POST', path, handler, options: {auth, tags, validate}})
-const DELETE = (path, handler, auth, tags = ['api'], validate = {}) => ({method: 'DELETE', path, handler, options: {auth, tags, validate}})
+const GET = (path, handler, auth) => ({method: 'GET', path, handler, config: {auth: auth}})
+const PUT = (path, handler, auth) => ({method: 'PUT', path, handler, config: {auth: auth}})
+const POST = (path, handler, auth) => ({method: 'POST', path, handler, config: {auth: auth}})
+const DELETE = (path, handler, auth) => ({method: 'DELETE', path, handler, config: {auth: auth}})
 
 const base = ({path, Model}) => [
   {

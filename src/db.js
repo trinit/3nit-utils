@@ -16,10 +16,7 @@ const init = async (mongoose, uri, schemas) =>
     debug('db')('Connecting to db')
     mongoose.connect(uri, {useNewUrlParser: true})
     const db = mongoose.connection
-    db.on('error', e => {
-      console.error(e)
-      debug('db')(`⚠️ Error connecting to database on uri ${uri}`)
-    })
+    db.on('error', () => debug('db')('⚠️ Error connecting to database'))
     db.once('open', () => {
       debug('db')('⚡️ Connected to database')
       instance.push(mongoose)
