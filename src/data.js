@@ -1,7 +1,7 @@
 import superagent from 'superagent'
 import superagentQueue from 'superagent-d2l-queue'
 import {stringify} from 'qs'
-import debug from 'debug'
+// import debug from 'debug'
 
 const isServer = typeof window === 'undefined'
 
@@ -61,13 +61,13 @@ const create = async (model, data) => {
 }
 
 const update = async (model, id, data) => {
-  try {
-    await superagent
-      .put(`${API}/${model}/${id}`, data)
-      .set('Authorization', `${token}`)
-  } catch (e) {
+  const res = await superagent
+    .put(`${API}/${model}/${id}`, data)
+    .set('Authorization', `${token}`)
+  return res.body
+  /* } catch (e) {
     debug('dev')(e)
-  }
+  } */
 }
 
 const post = async (path, data) => {
