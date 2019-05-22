@@ -2,10 +2,17 @@ import queryhelper from './queryhelper'
 
 const ping = () => `pong`
 
-const GET = (path, handler, auth) => ({method: 'GET', path, handler, config: {auth: auth}})
-const PUT = (path, handler, auth) => ({method: 'PUT', path, handler, config: {auth: auth}})
-const POST = (path, handler, auth) => ({method: 'POST', path, handler, config: {auth: auth}})
-const DELETE = (path, handler, auth) => ({method: 'DELETE', path, handler, config: {auth: auth}})
+const method = (type, path, handler, options) => {
+  if (typeof options === 'boolean') {
+    // backwards compatibility
+    return {method: type, path, handler, options: {auth: options}}
+  }
+  return {method: type, path, handler, options}
+}
+const GET = (path, handler, options) => method('GET', path, handler, options)
+const PUT = (path, handler, options) => method('PUT', path, handler, options)
+const POST = (path, handler, options) => method('POST', path, handler, options)
+const DELETE = (path, handler, options) => method('DELETE', path, handler, options)
 
 const base = ({path, Model}) => [
   {

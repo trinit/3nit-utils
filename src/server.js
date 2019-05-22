@@ -1,6 +1,6 @@
 import debug from 'debug'
-import hapi from 'hapi'
-import Inert from 'inert'
+import hapi from '@hapi/hapi'
+import Inert from '@hapi/inert'
 
 const defaultHandlerWrapper = app => {
   const handler = app.getRequestHandler()
