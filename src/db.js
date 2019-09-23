@@ -13,6 +13,7 @@ const instance = []
 const init = async (mongoose, uri, schemas) =>
   new Promise(async (resolve, reject) => {
     mongoose.Promise = global.Promise
+    mongoose.set('useCreateIndex', true)
     debug('db')('Connecting to db')
     mongoose.connect(uri, {useNewUrlParser: true})
     const db = mongoose.connection
