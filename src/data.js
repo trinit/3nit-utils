@@ -7,9 +7,8 @@ const isServer = typeof window === 'undefined'
 const setToken = value => (token = value)
 let token
 
-const API = process.env.NODE_ENV === 'development'
-  ? process.env.API_ENDPOINT ? process.env.API_ENDPOINT : 'http://l:4000/api'
-  : isServer ? `http://localhost:${process.env.PORT}/api` : '/api'
+const setEndpoint = value => (API = value)
+let API = isServer ? `http://localhost:${process.env.PORT}/api` : '/api'
 
 const find = async (model, filters) => {
   const query = filters ? '/find/' + stringify(filters) : ''
@@ -95,4 +94,4 @@ const custom = async (path, filters) => {
   return res.body
 }
 
-export default {setToken, find, get, getByCode, getByPath, getByKey, create, update, post, remove, custom}
+export default {setToken, setEndpoint, find, get, getByCode, getByPath, getByKey, create, update, post, remove, custom}
