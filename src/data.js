@@ -63,15 +63,9 @@ const update = async (model, id, data) => {
     .put(`${API}/${model}/${id}`, data)
     .set('Authorization', `${token}`)
   return res.body
-  /* } catch (e) {
-    debug('dev')(e)
-  } */
 }
 
 const post = async (path, data) => {
-  console.log('data.js :: post')
-  console.log(API)
-  console.log(process.env)
   const res = await superagent
     .post(`${API}/${path}`, data)
     .set('Authorization', `${token}`)
