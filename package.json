@@ -21,7 +21,7 @@
     "@hapi/hapi": "^18.4.0",
     "@hapi/inert": "^5.2.2",
     "debug": "^4.1.1",
-    "mongoose": "5.5.10",
+    "mongoose": "5.7.5",
     "next": "9.0.6",
     "nodemailer": "^6.3.0",
     "qs": "^6.9.0",
