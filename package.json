@@ -1,6 +1,6 @@
 {
   "name": "3nit-utils",
-  "version": "0.30.0",
+  "version": "1.0.0",
   "description": "NodeJS & React utils for 3nit projects",
   "main": "./index.js",
   "repository": "https://github.com/trinit/3nit-utils.git",
@@ -18,8 +18,8 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
-    "@hapi/hapi": "^18.4.0",
-    "@hapi/inert": "^5.2.2",
+    "@hapi/hapi": "^21.3.1",
+    "@hapi/inert": "^7.1.0",
     "debug": "^4.1.1",
     "mongoose": "5.5.10",
     "next": "9.0.6",
